@@ -37,17 +37,42 @@ def avoids(word,forbid):
         print("True")
             
 
-def count_avoids(list,forbid):
+def count_avoids(forbid):
+    count = 0
+    word_count = 0
     '''
     prints number of words without
     forbidden letters entered by user
     '''
+    with open("words.txt") as file:
+        for line in file:
+            for word in line.strip().split():
+                word_count += 1
+                for j in range(len(forbid)):
+                    for i in range(len(word)):
+                        if forbid[j] == word[i]:
+                            count += 1
+        print(word_count - count)
+                            
+                            
+                        
+    
 
 def uses_only(word,uses):
     '''
     
     '''
-    pass
+    for char in uses:
+        for letter in word:
+            if letter == char:
+                print("True")
+    else:
+        print("False")
+            
+            
+                
+        
 
-avoids("ouch","ouch") 
-    
+#avoids("ouch","ouch") 
+#count_avoids('zxquw')   
+uses_only('frog','frog')
