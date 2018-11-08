@@ -73,14 +73,67 @@ def uses_only(word,uses):
                 o = False
                 break
     return o
+
+def words_with_only(uses):
+    with open("words.txt") as file:
+        for line in file:
+            for word in line.strip().split():
+                if uses_only(word,uses):
+                    print(word)
             
-            
-                
+def uses_all(word,letters):
+    '''
+>>> uses_all('return','re')
+True
+        
+    '''
+    for char in letters:
+        for letter in word:
+            if char not in word:
+                return False
+    else:
+        return True
+
+def how_many_uses_all(letters):
+    with open("words.txt") as file:
+        for line in file:
+            for word in line.strip().split():
+                if uses_all(word,letters):
+                    print(word)
+
+def is_abcedarian(word):
+    '''
+    >>> is_abcedarian('word')
+    False
+    
+    >>> is_abcedarian('abce')
+    True
+    >>> is_abcedarian('stuv')
+    True
+    '''
+    word = word.lower()
+    for i in range(len(word)-1):
+        if ord(word[i]) > ord(word[i+1]):
+            return False
+    return True
+
+def count_abecedarian():
+    count = 0
+    with open("words.txt") as file:
+        for line in file:
+            for word in line.strip().split():
+                if is_abcedarian(word):
+                    count += 1
+                    
+    return count
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    print(uses_only('ffffffffffffrg','frg'))
-
+    #words_with_only('acehflo')
+    #print(uses_only('ffffffffffffrg','frg'))
+    #print(uses_all('return','re'))
+    #print(is_abcedarian('word'))
+    #count_abecedarian()
 #avoids("ouch","ouch") 
 #count_avoids('zxquw')   
 #uses_only('frog','frog')
