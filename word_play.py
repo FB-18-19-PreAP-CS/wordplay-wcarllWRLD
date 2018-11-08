@@ -1,3 +1,4 @@
+import re
 
 def at_least():
     '''
@@ -62,17 +63,24 @@ def uses_only(word,uses):
     '''
     
     '''
+    o = False
     for char in uses:
         for letter in word:
             if letter == char:
-                print("True")
-    else:
-        print("False")
+                o = True
+                
+            if letter not in uses:
+                o = False
+                break
+    return o
             
             
                 
-        
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    print(uses_only('ffffffffffffrg','frg'))
 
 #avoids("ouch","ouch") 
 #count_avoids('zxquw')   
-uses_only('frog','frog')
+#uses_only('frog','frog')
