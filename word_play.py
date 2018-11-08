@@ -27,6 +27,14 @@ def avoids(word,forbid):
     '''
     Takes word, takes string of forbidden letters,
     returns True if word free of forbidden letters
+    >>> avoids('word','zxcv')
+    True
+    >>> avoids('word','word')
+    False
+    >>> avoids('word','zxcw')
+    False
+    >>> avoids('abreeee','zxcv')
+    True
     '''
     for j in range(len(forbid)):
         for i in range(len(word)):
@@ -61,7 +69,8 @@ def count_avoids(forbid):
 
 def uses_only(word,uses):
     '''
-    
+    Takes word, String of letters
+    Returns True if word only uses letters from string
     '''
     o = False
     for char in uses:
@@ -75,6 +84,9 @@ def uses_only(word,uses):
     return o
 
 def words_with_only(uses):
+    '''
+    Takes String, Prints all the words with  only letters from String
+    '''
     with open("words.txt") as file:
         for line in file:
             for word in line.strip().split():
@@ -83,6 +95,8 @@ def words_with_only(uses):
             
 def uses_all(word,letters):
     '''
+    Takes Word, Takes String
+    Returns True if word uses all the required letters at least once
 >>> uses_all('return','re')
 True
         
@@ -95,6 +109,10 @@ True
         return True
 
 def how_many_uses_all(letters):
+    '''
+    Takes String of letters
+    counts number of words that use given letters
+    '''
     with open("words.txt") as file:
         for line in file:
             for word in line.strip().split():
